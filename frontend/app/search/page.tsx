@@ -1,4 +1,4 @@
- // localhost:3000/search/
+// localhost:3000/search/
 "use client";
 import React, { useEffect, useState } from "react";
 import SearchTable from "@/app/components/Table/SearchTable";
@@ -33,8 +33,11 @@ export default function SearchPage() {
   console.log("brandReputation", brandReputation);
 
   useEffect(() => {
-    if (productName !== lastSearchParams) {
-      api.get(`/questionnaire/?searchQ=${productName}&priceFactor=${priceFactor}&customerReview=${customerReview}&shipping=${shipping}&returnPolicy=${returnPolicy}&brandReputation=${brandReputation}`)
+    if (productName !== lastSearchParams && productName !== null) {
+      api
+        .get(
+          `/questionnaire/?searchQ=${productName}&priceFactor=${priceFactor}&customerReview=${customerReview}&shipping=${shipping}&returnPolicy=${returnPolicy}&brandReputation=${brandReputation}`
+        )
         // fetch(`http://localhost:8000/questionnaire/?searchQ=${newParams}`)
         .then((response) => response.data)
         .then((data) => {
